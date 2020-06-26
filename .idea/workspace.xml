@@ -991,6 +991,9 @@
       <change afterPath="$PROJECT_DIR$/../../master" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../mp-contants" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../mp-html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/libs/bootstrap/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/libs/bootstrap/css/bootstrap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/libs/bootstrap/css/bootstrap.css.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TCPDF/examples/data/cert/tcpdf.crt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TCPDF/examples/data/cert/tcpdf.p12" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TCPDF/tools/tcpdf_addfont.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/TCPDF/tools/tcpdf_addfont.php" afterDir="false" />
@@ -1065,7 +1068,7 @@
       <updated>1593088860199</updated>
       <workItem from="1593088868614" duration="10559000" />
       <workItem from="1593103440309" duration="11945000" />
-      <workItem from="1593172881122" duration="1847000" />
+      <workItem from="1593172881122" duration="3254000" />
     </task>
     <servers />
   </component>
