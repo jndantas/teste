@@ -1,0 +1,43 @@
+
+                    <div class="modal-body">
+                        <p>Folder accessibility allows you to manage who sees this folder.</p>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Department name</label>
+                                    <select class="form-control" name="accessibility">
+                                        <option value="Everyone" @if( $folder->accessibility == "Everyone" ) selected @endif>Everyone</option>
+                                        <option value="Departments" @if( $folder->accessibility == "Departments" ) selected @endif>Departments</option>
+                                        <option value="Only Me" @if( $folder->accessibility == "Only Me" ) selected @endif>Only Me</option>
+                                    </select>
+                                    <input type="hidden" name="csrf-token" value="<?=csrf_token();?>" />
+                                    <input type="hidden" name="folderid" value="{{ $folder->id }}" />
+                                </div>
+                            </div>
+                        </div>
+                        @if( $folder->accessibility == "Departments" )
+                        <div class="form-group departments-holder">
+                        @else
+                        <div class="form-group departments-holder" style="display: none;">
+                        @endif
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Select Department </label>
+                                    <select class="form-control select22" name="departments[]" multiple="">
+                                        @foreach ( $departments as $department )
+                                        <option value="{{ $department->id }}" @if( in_array($department->id, $allowedDepartments) ) selected @endif> {{ $department->name }}</option>
+                                        @endif
+                                    </select>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                    <script type="text/javascript">    
+                        $('.select22').select2({
+                            placeholder: "Select Department"
+                        });
+                    </script>

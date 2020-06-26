@@ -1,0 +1,64 @@
+    @if ( isset($protected) )
+    <div class="row">
+        <div class="col-md-5 folder-password">
+            <div class="center-notify"> <i class="ion-ios-locked"></i> <h3>Protected Folder!</h3></div>
+                <form class="folder-protection-form" action="" data-parsley-validate="" loader="true" method="POST">
+                        <p class="text-muted">This is a protected folder, please enter a password.</p>
+                        @if ( $incorrect )
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            Incorrect Password, please try again.
+                        </div>
+                        @endif
+                        <div class="form-group">
+                             <div class="row">
+                                <div class="col-md-12">
+                                    <label>Folder Password</label>
+                                    <input type="password" class="form-control bg-white" name="folderpassword" placeholder="Folder Password" data-parsley-required="true">
+                                    <input type="hidden" name="folder" value="1">
+                                    <input type="hidden" name="csrf-token" value="<?=csrf_token();?>" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                             <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-block" type="submit">Access Folder</button>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+        </div>
+    </div>
+    {{ exit(); }}
+    @endif    
+    @if ( !empty( $folders ) )
+    @foreach ( $folders as $folder )
+    <!-- folder -->
+    <div class="folder data-folder" data-toggle="tooltip" data-placement="top" data-type="folder" data-id="{{ $folder->id }}" data-original-title="{{ $folder->name }}">
+        @if ( !empty($folder->password) )
+        <img src="<?=url('');?>assets/images/folder-secure.png" class="img-responsive">
+        @else
+        <img src="<?=url('');?>assets/images/folder.png" class="img-responsive">
+        @endif
+        <p class="text-ellipsis">{{ $folder->name }}</p>
+    </div>
+    @endforeach
+    @endif
+
+    @if ( !empty( $documents ) )
+    @foreach ( $documents as $document )
+    <!-- folder -->
+    <div class="folder data-file" data-toggle="tooltip" data-placement="top" data-type="file" data-id="{{ $document->id }}" extension="{{ $document->extension }}" document_key="{{ $document->document_key }}" filename="{{ $document->filename }}" data-original-title="{{ $document->name }}">
+        <img src="<?=url('');?>assets/images/formats/{{ $document->extension }}.png" class="img-responsive">
+        <p class="text-ellipsis">{{ $document->name }}</p>
+    </div>
+    @endforeach
+    @endif
+
+    @if ( empty($documents) && empty($folders) )
+    <div class="center-notify">
+        <i class="ion-ios-information-outline"></i>
+        <h3>No files or folders found!</h3>
+    </div>
+    @endif

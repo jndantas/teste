@@ -1,0 +1,24 @@
+@if ( count( $chats ) < 1 )
+empty@else
+@foreach( $chats as $chat )
+    @if ( $user->id == $chat->sender )
+    <div class="chat-message chat-message-sender" id="{{ $chat->id }}">
+    @else
+    <div class="chat-message chat-message-recipient" id="{{ $chat->id }}">
+    @endif
+    @if ( !empty($chat->avatar) )
+        <img class='chat-image chat-image-default' src='<?=url("")?>uploads/avatar/{{ $chat->avatar }}'  data-toggle="tooltip" data-placement="top" title="{{ $chat->fname }} {{ $chat->lname }}" />
+    @else
+        <img class='chat-image chat-image-default' src='<?=url("")?>assets/images/avatar.png'  data-toggle="tooltip" data-placement="top" title="{{ $chat->fname }} {{ $chat->lname }}" />
+    @endif
+   <div class='chat-message-wrapper'>
+      <div class='chat-message-content'>
+         <p>{{ $chat->message }}</p>
+      </div>
+      <div class='chat-details'>
+         <span class='chat-message-localization font-size-small'>{{ date("F j, Y H:i", strtotime($chat->time_)) }}</span>
+      </div>
+   </div>
+</div>
+@endforeach
+@endif

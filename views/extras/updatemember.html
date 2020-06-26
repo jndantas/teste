@@ -1,0 +1,76 @@
+                    
+                    <div class="modal-body">
+                        <p>Update team member account info.</p>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <label>First name</label>
+                                    <input type="text" class="form-control" name="fname" value="{{ $member->fname }}" placeholder="First name" data-parsley-required="true">
+                                    <input type="hidden" name="csrf-token" value="{{ csrf_token(); }}" />
+                                    <input type="hidden" name="memberid" value="{{ $member->id }}" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Last name</label>
+                                    <input type="text" class="form-control" name="lname" value="{{ $member->lname }}" placeholder="Last name" data-parsley-required="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email address</label>
+                                    <input type="email" class="form-control" name="email" value="{{ $member->email }}" placeholder="Email address" data-parsley-required="true">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Phone number</label>
+                                    <input type="text" class="form-control" name="phone" value="{{ $member->phone }}" placeholder="Phone number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Permissions</label>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="checkbox" class="switch-dynamic" name="permissions[]" value="upload" @if ( in_array("upload",json_decode($member->permissions)) ) checked @endif readonly/>  Upload Files
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="checkbox" class="switch-dynamic" name="permissions[]" value="edit" @if ( in_array("edit",json_decode($member->permissions)) ) checked @endif /> Edit & Sign
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="checkbox" class="switch-dynamic" name="permissions[]" value="delete" @if ( in_array("delete",json_decode($member->permissions)) ) checked @endif  /> Delete Files & folders
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Profile picture</label>
+                                    @if( !empty($member->avatar) )
+                                    <input type="file" name="avatar" class="croppie" default='{{ url(""); }}uploads/avatar/{{ $member->avatar }}' crop-width="200" crop-height="200" accept="image/*">
+                                    @else
+                                    <input type="file" name="avatar" class="croppie" default='{{ url(""); }}assets/images/avatar.png' crop-width="200" crop-height="200" accept="image/*">
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                    <script type="text/javascript">
+                        // initialize Switchery
+                        var elems = Array.prototype.slice.call(document.querySelectorAll('.switch-dynamic'));
+                        elems.forEach(function(html) {
+                            var switchery = new Switchery(html, {
+                                size: 'small',
+                                color: '#007bff'
+                            });
+                        });
+                        // croppify
+                        croppify();
+                    </script>
